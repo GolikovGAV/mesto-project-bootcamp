@@ -1,0 +1,17 @@
+.close-button {
+  background-image: url(../../images/close-button.svg);
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  top: -32px;
+  right: -40px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity linear 0.5s;
+  cursor: pointer;
+}
+.close-button:hover {
+  opacity: 0.6;
+}

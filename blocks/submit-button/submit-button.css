@@ -1,0 +1,12 @@
+.submit-button {
+  background-color: black;
+  width: calc(100% - 36px * 2);
+  margin: 0 auto 29px;
+  color: white;
+  height: 50px;
+  transition: opacity linear 0.5s;
+  cursor: pointer;
+}
+.submit-button:hover {
+  opacity: 0.8;
+}
