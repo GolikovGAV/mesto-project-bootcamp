@@ -5,3 +5,13 @@
   margin: 0 auto;
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
+@media screen and (max-width: 880px) {
+  .page {
+    max-width: calc(100% - 19px * 2);
+  }
+}
+@media screen and (max-width: 425px) {
+  .page {
+    max-width: 100%;
+  }
+}
