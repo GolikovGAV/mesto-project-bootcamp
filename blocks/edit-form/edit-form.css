@@ -8,3 +8,9 @@
   flex-direction: column;
   border-radius: 10px;
 }
+@media screen and (max-width: 600px) {
+  .edit-form {
+    width: 282px;
+    height: 322px;
+  }
+}
