@@ -24,13 +24,14 @@
 /* element */
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__name-container/element__name-container.css);
 @import url(../blocks/element/__name/element__name.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 /* pop up*/
 @import url(../blocks/pop-up/pop-up.css);
-@import url(../blocks/pop-up/_opened/popup_opened.css);
+@import url(../blocks/pop-up/_opened/pop-up_opened.css);
 @import url(../blocks/edit-form/edit-form.css);
 @import url(../blocks/edit-form/__title/edit-form__title.css);
 @import url(../blocks/edit-form/__name/edit-form__name.css);
