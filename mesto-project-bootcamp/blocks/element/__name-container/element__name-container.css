@@ -1,8 +1,0 @@
-.element__name-container {
-  display: grid;
-  width: calc(100% - 20px * 2);
-  margin: 0 auto;
-  padding: 25px 0 0;
-  column-gap: 20px;
-  grid-template-columns: 1fr min-content;
-}
