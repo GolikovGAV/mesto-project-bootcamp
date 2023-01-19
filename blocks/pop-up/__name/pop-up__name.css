@@ -1,0 +1,12 @@
+.pop-up__name {
+  width: calc(100% - 36px * 2);
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 13px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
