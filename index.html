@@ -16,6 +16,23 @@
       />
     </header>
     <main>
+      <section class="pop-up pop-up_opened">
+        <div class="edit-form">
+          <h2 class="edit-form__title">Редактировать профиль</h2>
+          <input
+            type="text"
+            placeholder="Жак-Ив Кусто"
+            class="edit-form__name"
+          />
+          <input
+            type="text"
+            placeholder="Исследователь океана"
+            class="edit-form__description"
+          />
+          <button class="submit-button">Сохранить</button>
+          <button class="close-button"></button>
+        </div>
+      </section>
       <section class="profile">
         <img
           src="./images/profile__avatar.jpg"
@@ -23,14 +40,14 @@
           class="profile__avatar"
         />
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
+          <h2 class="profile__name">Жак-Ив Кусто</h2>
+          <button class="edit-button"></button>
           <p class="profile__description">Исследователь океана</p>
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <!-- <article class="element">
+        <article class="element">
           <img
             src="./images/karachaevsk.jpg"
             alt="Сентинский храм в горах на фоне изумрудного леса"
@@ -95,46 +112,11 @@
             <h2 class="element__name">Будапешт</h2>
             <button class="element__like-button" type="button"></button>
           </div>
-        </article> -->
+        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia Golkov Artem</p>
     </footer>
-    <section class="pop-up" id="edit-form">
-      <div class="edit-form">
-        <h2 class="edit-form__title">Редактировать профиль</h2>
-        <form required action="#" class="edit-form__form">
-          <input
-            value="Жак-Ив Кусто"
-            type="text"
-            placeholder="Жак-Ив Кусто"
-            class="edit-form__name"
-            name="name"
-            required
-          />
-          <input
-            value="Исследователь океана"
-            type="text"
-            placeholder="Исследователь океана"
-            class="edit-form__description"
-            name="description"
-            required
-          />
-        </form>
-        <button class="submit-button">Сохранить</button>
-        <button class="close-button"></button>
-      </div>
-    </section>
-    <template>
-      <article class="element">
-        <img src="" class="element__image" />
-        <div class="element__name-container">
-          <h3 class="element__name"></h3>
-          <button class="like-button"></button>
-        </div>
-      </article>
-    </template>
-    <script src="./script.js"></script>
   </body>
 </html>
