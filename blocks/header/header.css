@@ -4,7 +4,7 @@
   margin: 45px auto 40px;
   border-bottom: solid rgba(84, 84, 84, 0.7) 1px;
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 620px) {
   .header {
     min-height: 56px;
     margin: 28px auto 42px;

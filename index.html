@@ -30,7 +30,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <article class="element">
+        <!-- <article class="element">
           <img
             src="./images/karachaevsk.jpg"
             alt="Сентинский храм в горах на фоне изумрудного леса"
@@ -95,32 +95,46 @@
             <h2 class="element__name">Будапешт</h2>
             <button class="element__like-button" type="button"></button>
           </div>
-        </article>
+        </article> -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia Golkov Artem</p>
     </footer>
-    <section class="pop-up pop-up_opened">
-      <div class="pop-up__container">
-        <form name="submit-form" class="form">
-          <h2 class="pop-up__title">Редактировать профиль</h2>
+    <section class="pop-up" id="edit-form">
+      <div class="edit-form">
+        <h2 class="edit-form__title">Редактировать профиль</h2>
+        <form required action="#" class="edit-form__form">
           <input
-            name="name-form"
+            value="Жак-Ив Кусто"
             type="text"
             placeholder="Жак-Ив Кусто"
-            class="pop-up__input"
+            class="edit-form__name"
+            name="name"
+            required
           />
           <input
-            name="description-form"
+            value="Исследователь океана"
             type="text"
             placeholder="Исследователь океана"
-            class="pop-up__input"
+            class="edit-form__description"
+            name="description"
+            required
           />
-          <button class="pop-up__submit-button" type="submit">Сохранить</button>
-          <button class="pop-up__close-button" type="button"></button>
         </form>
+        <button class="submit-button">Сохранить</button>
+        <button class="close-button"></button>
       </div>
     </section>
+    <template>
+      <article class="element">
+        <img src="" class="element__image" />
+        <div class="element__name-container">
+          <h3 class="element__name"></h3>
+          <button class="like-button"></button>
+        </div>
+      </article>
+    </template>
+    <script src="./script.js"></script>
   </body>
 </html>
