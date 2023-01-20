@@ -1,9 +1,16 @@
 .edit-form__title {
   color: black;
-  margin: 34px 0 54px 36px;
+  margin: 34px 0 50px 36px;
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
   letter-spacing: 0em;
   text-align: left;
+}
+@media screen and (max-width: 620px) {
+  .edit-form__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 25px 22px 75px;
+  }
 }
