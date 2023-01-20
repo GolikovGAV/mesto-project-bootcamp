@@ -1,0 +1,33 @@
+<<<<<<< HEAD:blocks/pop-up/__container/pop-up__container.css
+.pop-up__container {
+  position: relative;
+  width: 430px;
+  min-height: 330px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+}
+@media screen and (max-width: 600px) {
+  .pop-up__container {
+    width: 282px;
+    min-height: 322px;
+  }
+}
+=======
+.edit-form {
+  position: relative;
+  width: 430px;
+  height: 330px;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+@media screen and (max-width: 620px) {
+  .edit-form {
+    width: 282px;
+    height: 322px;
+  }
+}
+>>>>>>> develop:blocks/edit-form/edit-form.css
