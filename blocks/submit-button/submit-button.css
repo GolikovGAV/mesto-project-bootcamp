@@ -1,6 +1,7 @@
 .submit-button {
   background-color: black;
   width: calc(100% - 36px * 2);
+  min-width: 238px;
   margin: 0 auto 29px;
   color: white;
   min-height: 50px;

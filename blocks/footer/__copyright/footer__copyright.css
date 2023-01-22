@@ -7,10 +7,13 @@
   text-align: left;
   margin: 0 auto;
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 620px) {
   .footer__copyright {
     max-width: calc(100% - 19px * 2);
     font-size: 14px;
+    font-weight: 400;
     line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
   }
 }

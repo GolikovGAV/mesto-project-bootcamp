@@ -10,7 +10,7 @@
     max-width: calc(100% - 19px * 2);
   }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 620px) {
   .page {
     max-width: 100%;
   }
