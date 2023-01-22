@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./script.js" defer></script>
   </head>
   <body class="page">
     <header class="header">
@@ -16,46 +17,31 @@
       />
     </header>
     <main>
-      <section class="pop-up pop-up_opened">
-        <div class="edit-form">
-          <h2 class="edit-form__title">Редактировать профиль</h2>
-          <input
-            type="text"
-            placeholder="Жак-Ив Кусто"
-            class="edit-form__name"
-          />
-          <input
-            type="text"
-            placeholder="Исследователь океана"
-            class="edit-form__description"
-          />
-          <button class="submit-button">Сохранить</button>
-          <button class="close-button"></button>
-        </div>
-      </section>
       <section class="profile">
         <img
           src="./images/profile__avatar.jpg"
-          alt="Фото профиля"
+          alt=""
           class="profile__avatar"
         />
         <div class="profile__info">
-          <h2 class="profile__name">Жак-Ив Кусто</h2>
-          <button class="edit-button"></button>
-          <p class="profile__description">Исследователь океана</p>
+          <h2 class="profile__name" id="profile__name">Жак-Ив Кусто</h2>
+          <button class="edit-button" id="edit-button"></button>
+          <p class="profile__description" id="profile__description">
+            Исследователь океана
+          </p>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="add-button"></button>
       </section>
       <section class="elements">
-        <article class="element">
+        <!-- <article class="element">
           <img
             src="./images/karachaevsk.jpg"
             alt="Сентинский храм в горах на фоне изумрудного леса"
             class="element__image"
           />
           <div class="element__name-container">
-            <h2 class="element__name">Карачаевск</h2>
-            <button class="element__like-button" type="button"></button>
+            <h3 class="element__name">Карачаевск</h3>
+            <button class="like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -65,8 +51,8 @@
             class="element__image"
           />
           <div class="element__name-container">
-            <h2 class="element__name">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button"></button>
+            <h3 class="element__name">Гора Эльбрус</h3>
+            <button class="like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -76,8 +62,8 @@
             class="element__image"
           />
           <div class="element__name-container">
-            <h2 class="element__name">Домбай</h2>
-            <button class="element__like-button" type="button"></button>
+            <h3 class="element__name">Домбай</h3>
+            <button class="like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -87,8 +73,8 @@
             class="element__image"
           />
           <div class="element__name-container">
-            <h2 class="element__name">Российская академия наук</h2>
-            <button class="element__like-button" type="button"></button>
+            <h3 class="element__name">Российская академия наук</h3>
+            <button class="like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -98,8 +84,8 @@
             class="element__image"
           />
           <div class="element__name-container">
-            <h2 class="element__name">Посольство США</h2>
-            <button class="element__like-button" type="button"></button>
+            <h3 class="element__name">Посольство США</h3>
+            <button class="like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -109,14 +95,85 @@
             class="element__image"
           />
           <div class="element__name-container">
-            <h2 class="element__name">Будапешт</h2>
-            <button class="element__like-button" type="button"></button>
+            <h3 class="element__name">Будапешт</h3>
+            <button class="like-button"></button>
           </div>
-        </article>
+        </article>  -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia Golkov Artem</p>
     </footer>
+    <!-- edit profile pop-up -->
+    <section class="pop-up" id="edit-form">
+      <div class="edit-form">
+        <h2 class="edit-form__title">Редактировать профиль</h2>
+        <form required action="#" class="edit-form__form">
+          <input
+            value="Жак-Ив Кусто"
+            type="text"
+            placeholder="Жак-Ив Кусто"
+            class="edit-form__name"
+            name="name"
+            required
+          />
+          <input
+            value="Исследователь океана"
+            type="text"
+            placeholder="Исследователь океана"
+            class="edit-form__description"
+            name="description"
+            required
+          />
+        </form>
+        <button class="submit-button" id="save-profile">Сохранить</button>
+        <button class="close-button" id="close-profile"></button>
+      </div>
+    </section>
+    <!-- pop-up newplace -->
+    <section class="pop-up" id="new-place">
+      <div class="edit-form">
+        <h2 class="edit-form__title">Новое место</h2>
+        <form required action="#" class="edit-form__form">
+          <input
+            value="Название"
+            placeholder="Название"
+            type="text"
+            class="edit-form__name"
+            name="name"
+            required
+          />
+          <input
+            value="Ссылка на картинку"
+            placeholder="Ссылка на картинку"
+            type="text"
+            class="edit-form__description"
+            name="description"
+            required
+          />
+        </form>
+        <button class="submit-button" id="create-button">Создать</button>
+        <button class="close-button" id="close-newplace"></button>
+      </div>
+    </section>
+    <!-- full iamge pop-up -->
+    <section class="pop-up" id="full-image">
+      <figure class="pop-up__figure">
+        <button class="close-button" id="close-full-image"></button>
+        <img src="#" class="pop-up__full-image" />
+        <figcaption class="pop-up__description"></figcaption>
+      </figure>
+    </section>
+    <!-- place template -->
+    <template id="templateElement">
+      <article class="element">
+        <img src="#" class="element__image" />
+        <button class="delete-button"></button>
+        <div class="element__name-container">
+          <h3 class="element__name"></h3>
+          <button class="like-button"></button>
+        </div>
+      </article>
+    </template>
   </body>
 </html>

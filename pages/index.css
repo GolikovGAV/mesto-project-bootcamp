@@ -13,24 +13,33 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__description/profile__description.css);
-@import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+/* buttons */
+@import url(../blocks/add-button/add-button.css);
+@import url(../blocks/edit-button/edit-button.css);
+@import url(../blocks/like-button/like-button.css);
+@import url(../blocks/like-button/like-button_active.css);
+@import url(../blocks/submit-button/submit-button.css);
+@import url(../blocks/close-button/close-button.css);
+@import url(../blocks/delete-button/delete-button.css);
 /* elements */
-@import url(../blocks/elements/elements.css);
+@import url(../blocks/elemets/elements.css);
 /* element */
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__name-container/element__name-container.css);
 @import url(../blocks/element/__name/element__name.css);
-@import url(../blocks/element/__like-button/element__like-button.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-/* form */
-@import url(../blocks/form/form.css);
 /* pop up*/
 @import url(../blocks/pop-up/pop-up.css);
+/*  */
+@import url(../blocks/pop-up/__figure/pop-up__figure.css);
+@import url(../blocks/pop-up/__full-image/pop-up__full-image.css);
+@import url(../blocks/pop-up/__description/pop-up__description.css);
+/*  */
 @import url(../blocks/pop-up/_opened/pop-up_opened.css);
+@import url(../blocks/edit-form/__form/edit-form__form.css);
 @import url(../blocks/edit-form/edit-form.css);
 @import url(../blocks/edit-form/__title/edit-form__title.css);
 @import url(../blocks/edit-form/__name/edit-form__name.css);
