@@ -105,13 +105,3 @@ function submitCreate(event) {
 closeButtonNewPlace.addEventListener("click", () => closeOpen(popUpNewPlace)); // eventListeners for new cards pop-up
 addButton.addEventListener("click", () => closeOpen(popUpNewPlace));
 createButton.addEventListener("click", submitCreate);
-
-// Открытие и закрытие модального окна            DONE
-// Редактирование имени и информации о себе       DONE
-// Шесть карточек «из коробки»                    DONE
-// Форма добавления карточки                      DONE
-// Добавление карточки                            DONE
-// Лайк карточки                                  DONE
-// Удаление карточки                              DONE
-// Открытие попапа с картинкой                    DONE нужен фикс стилей
-// Плавное открытие и закрытие попапов            DONE
