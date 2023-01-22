@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./script.js" defer></script>
   </head>
   <body class="page">
     <header class="header">
@@ -97,12 +98,13 @@
             <h3 class="element__name">Будапешт</h3>
             <button class="like-button"></button>
           </div>
-        </article> -->
+        </article>  -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia Golkov Artem</p>
     </footer>
+    <!-- edit profile pop-up -->
     <section class="pop-up" id="edit-form">
       <div class="edit-form">
         <h2 class="edit-form__title">Редактировать профиль</h2>
@@ -124,19 +126,54 @@
             required
           />
         </form>
-        <button class="submit-button">Сохранить</button>
-        <button class="close-button"></button>
+        <button class="submit-button" id="save-profile">Сохранить</button>
+        <button class="close-button" id="close-profile"></button>
       </div>
     </section>
-    <template>
+    <!-- pop-up newplace -->
+    <section class="pop-up" id="new-place">
+      <div class="edit-form">
+        <h2 class="edit-form__title">Новое место</h2>
+        <form required action="#" class="edit-form__form">
+          <input
+            value="Название"
+            placeholder="Название"
+            type="text"
+            class="edit-form__name"
+            name="name"
+            required
+          />
+          <input
+            value="Ссылка на картинку"
+            placeholder="Ссылка на картинку"
+            type="text"
+            class="edit-form__description"
+            name="description"
+            required
+          />
+        </form>
+        <button class="submit-button" id="create-button">Создать</button>
+        <button class="close-button" id="close-newplace"></button>
+      </div>
+    </section>
+    <!-- full iamge pop-up -->
+    <section class="pop-up" id="full-image">
+      <figure class="pop-up__figure">
+        <button class="close-button" id="close-full-image"></button>
+        <img src="#" class="pop-up__full-image" />
+        <figcaption class="pop-up__description"></figcaption>
+      </figure>
+    </section>
+    <!-- place template -->
+    <template id="templateElement">
       <article class="element">
-        <img src="" class="element__image" />
+        <img src="#" class="element__image" />
+        <button class="delete-button"></button>
         <div class="element__name-container">
           <h3 class="element__name"></h3>
           <button class="like-button"></button>
         </div>
       </article>
     </template>
-    <script src="./script.js"></script>
   </body>
 </html>

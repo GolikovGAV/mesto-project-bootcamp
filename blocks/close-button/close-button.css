@@ -24,3 +24,11 @@
     right: 0;
   }
 }
+@media (orientation: landscape) and (max-height: 450px) {
+  .close-button {
+    height: 20px;
+    width: 20px;
+    top: 0px;
+    right: -36px;
+  }
+}
