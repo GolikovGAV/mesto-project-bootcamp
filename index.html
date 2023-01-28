@@ -26,40 +26,51 @@
         <div class="profile__info">
           <h2 class="profile__name" id="profile__name">Жак-Ив Кусто</h2>
           <button class="edit-button" id="edit-button"></button>
-          <p class="profile__description" id="profile__description">
-            Исследователь океана
-          </p>
+          <p class="profile__description" id="profile__description">Исследователь океана</p>
         </div>
         <button class="add-button"></button>
       </section>
       <section class="elements"></section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia Golkov Artem</p>
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <!-- edit profile pop-up -->
     <section class="pop-up" id="edit-form">
       <div class="edit-form">
         <h2 class="edit-form__title">Редактировать профиль</h2>
-        <form required action="#" class="edit-form__form">
+        <form
+          required
+          action="#"
+          class="edit-form__form"
+          method="post"
+          name="user-profile"
+        >
           <input
-            value=""
             type="text"
             placeholder="Жак-Ив Кусто"
             class="edit-form__name"
-            name="name"
+            name="user-name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span id="user-name-error"></span>
           <input
-            value=""
             type="text"
             placeholder="Исследователь океана"
             class="edit-form__description"
-            name="description"
+            name="user-description"
             required
+            minlength="2"
+            maxlength="200"
           />
+          <span id="user-description-error"></span>
+          <button class="submit-button" id="save-profile" type="submit">
+            Сохранить
+          </button>
         </form>
-        <button class="submit-button" id="save-profile">Сохранить</button>
+
         <button class="close-button" id="close-profile"></button>
       </div>
     </section>
@@ -67,25 +78,32 @@
     <section class="pop-up" id="new-place">
       <div class="edit-form">
         <h2 class="edit-form__title">Новое место</h2>
-        <form required action="#" class="edit-form__form">
+        <form action="#" class="edit-form__form" method="post" name="new-card">
           <input
             value=""
             placeholder="Название"
             type="text"
             class="edit-form__name"
-            name="name"
+            name="place-name"
+            minlength="2"
+            maxlength="30"
             required
           />
+          <span id="place-name-error"></span>
           <input
             value=""
             placeholder="Ссылка на картинку"
-            type="text"
+            type="url"
             class="edit-form__description"
-            name="description"
+            name="place-description"
             required
           />
+          <span id="place-description-error"></span>
+          <button class="submit-button" id="create-button" type="submit">
+            Создать
+          </button>
         </form>
-        <button class="submit-button" id="create-button">Создать</button>
+
         <button class="close-button" id="close-newplace"></button>
       </div>
     </section>
