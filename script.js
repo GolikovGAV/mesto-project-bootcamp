@@ -29,6 +29,13 @@ const initialCards = [
     alt: "Берег Байкала",
   },
 ];
+const newCard = [
+  {
+    name: "",
+    link: "",
+    alt: "Ваше изображение",
+  },
+];
 const profilePopUp = document.querySelector("#edit-form");
 const closeProfile = document.querySelector("#close-profile");
 const editButton = document.querySelector(".edit-button");
@@ -52,97 +59,126 @@ const newPlaceLinkInput = popUpNewPlace.querySelector(
   ".edit-form__description"
 );
 
-// close and open for pop-ups
+// close pop-ups
 function closePopUp(data) {
   data.classList.remove("pop-up_opened");
 }
+//  open pop-ups
 function openPopUp(data) {
   data.classList.add("pop-up_opened");
 }
-
+//get user info to edit form
+function getUserInfo() {
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
+}
+// open profile edit
+editButton.addEventListener("click", function () {
+  getUserInfo();
+  openPopUp(profilePopUp);
+});
 // submit function for saving new profile info
 function submit(event) {
   event.preventDefault();
+
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
+
   closePopUp(profilePopUp);
 }
-
-// createNewElement function
-const createNewElement = function (data) {
-  const element = templateElement.content
-    .querySelector(".element")
-    .cloneNode(true);
-  element.querySelector(".element__image").src = data.link;
-  element.querySelector(".element__image").alt = data.alt;
-  element.querySelector(".element__name").textContent = data.name;
-
-  // adding cards like
+// like button
+function addLikeButtonListener(element) {
   const likeButton = element.querySelector(".like-button");
+
   likeButton.addEventListener("click", (event) =>
     event.target.classList.toggle("like-button_active")
   );
+}
+// delete button
+function addDeleteButtonListener(element) {
+  const deleteButton = element.querySelector(".delete-button");
 
-  // full image listener
-
+  deleteButton.addEventListener("click", () => element.remove());
+}
+// full image listener
+function fullImageListener(element, data) {
   const imageListener = element.querySelector(".element__image");
+
   imageListener.addEventListener("click", function (object) {
     if (object.target.closest(".element")) {
       fullImage.src = data.link;
       fullImageDescription.textContent = data.name;
+
       openPopUp(fullImagePopUp);
     }
   });
-  // delete button
-  const deleteButton = element.querySelector(".delete-button");
-  deleteButton.addEventListener("click", () => element.remove());
+}
+// create new place card function
+const createNewElement = function (data) {
+  const element = templateElement.content
+    .querySelector(".element")
+    .cloneNode(true);
+
+  element.querySelector(".element__image").src = data.link;
+  element.querySelector(".element__image").alt = data.alt;
+  element.querySelector(".element__name").textContent = data.name;
+
+  addLikeButtonListener(element);
+  fullImageListener(element, data);
+  addDeleteButtonListener(element);
 
   return element;
-}; // the end of createNewElement
-
+};
 // rendering initialCards
-initialCards.forEach(function (data) {
-  const element = createNewElement(data);
-  elements.append(element);
+initialCards.forEach(function (obj) {
+  elements.append(createNewElement(obj));
 });
-
 // adding pop-up for creating custom cards by name + link
-function submitCreate(event) {
-  const newCard = [
-    {
-      name: "",
-      link: "",
-      alt: "Ваша изображение",
-    },
-  ];
+const submitCreate = function (event) {
   event.preventDefault();
+
   newCard[0].name = newPlaceNameInput.value;
   newCard[0].link = newPlaceLinkInput.value;
+
   newCard.forEach(function (data) {
-    const element = createNewElement(data);
-    elements.prepend(element);
+    const card = createNewElement(data);
+    elements.prepend(card);
   });
+
   closePopUp(popUpNewPlace);
+
   newPlaceNameInput.value = "";
   newPlaceLinkInput.value = "";
-}
-
+};
 // eventListeners for new cards pop-up
 closeButtonNewPlace.addEventListener("click", () => closePopUp(popUpNewPlace));
+
 addButton.addEventListener("click", () => openPopUp(popUpNewPlace));
-createButton.addEventListener("click", submitCreate);
 
 // eventListenres for profile buttons
 closeProfile.addEventListener("click", () => closePopUp(profilePopUp));
-editButton.addEventListener("click", function () {
-  // При открытии попапа профиля нужно вставлять в его инпуты данные пользователя, которые отображены сейчас на сайте, чтобы можно было их отредактировать сразу и обновить.
-  nameInput.value = profileName.textContent;
-  descriptionInput.value = profileDescription.textContent;
-  openPopUp(profilePopUp);
-});
-submitButton.addEventListener("click", submit);
+//
+popUpNewPlace
+  .querySelector(".edit-form__form")
+  .addEventListener("submit", submitCreate);
 
+profilePopUp
+  .querySelector(".edit-form__form")
+  .addEventListener("submit", submit);
 // full image
 closeButtonFullImage.addEventListener("click", () =>
   closePopUp(fullImagePopUp)
 );
+// // VALIDATION
+// function enableValidation() {
+//   const forms = document.querySelectorAll(".edit-form__form");
+
+//   [...forms].forEach((form) => {
+//     form.addEventListener("sumbit", (event) => {
+//       event.preventDefault();
+//       console.log(form);
+//     });
+//   });
+//   // console.log(forms);
+// }
+// // enableValidation();

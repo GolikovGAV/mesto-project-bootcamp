@@ -1,5 +1,4 @@
 .edit-form__description {
-  width: calc(100% - 36px * 2);
   margin: 30px auto 45px;
   min-width: 238px;
   font-size: 14px;
