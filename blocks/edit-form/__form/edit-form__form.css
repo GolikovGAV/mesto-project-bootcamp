@@ -1,6 +1,6 @@
 .edit-form__form {
-  margin-left: 36px;
-  width: calc(100% - 36px * 2);
+margin: 0 auto;  
+width: calc(100% - 36px * 2);
 
 }
 @media screen and (max-width: 620px) {
