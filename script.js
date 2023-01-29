@@ -12,6 +12,7 @@ const initialCards = [
   {
     name: "Иваново",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+    alt: "Иваново панельки",
   },
   {
     name: "Камчатка",
@@ -115,6 +116,7 @@ function fullImageListener(element, data) {
 }
 // create new place card function
 const createNewElement = function (data) {
+  
   const element = templateElement.content
     .querySelector(".element")
     .cloneNode(true);
@@ -147,8 +149,8 @@ const submitCreate = function (event) {
 
   closePopUp(popUpNewPlace);
 
-  newPlaceNameInput.value = "";
-  newPlaceLinkInput.value = "";
+  event.target.reset();
+
 };
 // eventListeners for new cards pop-up
 closeButtonNewPlace.addEventListener("click", () => closePopUp(popUpNewPlace));
