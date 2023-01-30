@@ -9,6 +9,7 @@
   align-self: center;
   transition: opacity linear 0.5s;
   cursor: pointer;
+  border-radius: 2px;
 }
 .add-button:hover {
   opacity: 0.6;

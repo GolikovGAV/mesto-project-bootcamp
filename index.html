@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css" />
-    <script src="./script.js" defer></script>
+    <script src="./script.js" type="module" defer></script>
   </head>
   <body class="page">
     <header class="header">
@@ -26,6 +26,7 @@
         <div class="profile__info">
           <h2 class="profile__name" id="profile__name">Жак-Ив Кусто</h2>
           <button class="edit-button" id="edit-button"></button>
+          <!-- prettier-ignore -->
           <p class="profile__description" id="profile__description">Исследователь океана</p>
         </div>
         <button class="add-button"></button>
@@ -45,27 +46,37 @@
           class="edit-form__form"
           method="post"
           name="user-profile"
+          novalidate
         >
-          <input
-            type="text"
-            placeholder="Жак-Ив Кусто"
-            class="edit-form__name"
-            name="user-name"
-            required
-            minlength="2"
-            maxlength="40"
-          />
-          <span id="user-name-error"></span>
-          <input
-            type="text"
-            placeholder="Исследователь океана"
-            class="edit-form__description"
-            name="user-description"
-            required
-            minlength="2"
-            maxlength="200"
-          />
-          <span id="user-description-error"></span>
+          <div class="edit-form__container">
+            <input
+              type="text"
+              placeholder="Ваше имя"
+              class="edit-form__input"
+              id="edit-form__name"
+              name="user-name"
+              required
+              minlength="2"
+              maxlength="40"
+            />
+            <span id="user-name-error" class="edit-form__error-message"></span>
+          </div>
+          <div class="edit-form__container">
+            <input
+              type="text"
+              placeholder="О вас"
+              class="edit-form__input"
+              id="edit-form__description"
+              name="user-description"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <span
+              id="user-description-error"
+              class="edit-form__error-message"
+            ></span>
+          </div>
           <button class="submit-button" id="save-profile" type="submit">
             Сохранить
           </button>
@@ -77,32 +88,47 @@
     <section class="pop-up" id="new-place">
       <div class="edit-form">
         <h2 class="edit-form__title">Новое место</h2>
-        <form action="#" class="edit-form__form" method="post" name="new-card">
-          <input
-            value=""
-            placeholder="Название"
-            type="text"
-            class="edit-form__name"
-            name="place-name"
-            minlength="2"
-            maxlength="30"
-            required
-          />
-          <span id="place-name-error"></span>
-          <input
-            value=""
-            placeholder="Ссылка на картинку"
-            type="url"
-            class="edit-form__description"
-            name="place-description"
-            required
-          />
-          <span id="place-description-error"></span>
+        <form
+          action="#"
+          class="edit-form__form"
+          method="post"
+          name="new-card"
+          novalidate
+        >
+          <div class="edit-form__container">
+            <input
+              value=""
+              placeholder="Название"
+              type="text"
+              class="edit-form__input"
+              id="newplace-name"
+              name="place-name"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span id="place-name-error" class="edit-form__error-message"></span>
+          </div>
+          <div class="edit-form__container">
+            <input
+              value=""
+              placeholder="Ссылка на картинку"
+              type="url"
+              class="edit-form__input"
+              id="newplace-link"
+              name="place-description"
+              required
+            />
+            <span
+              id="place-description-error"
+              class="edit-form__error-message"
+            ></span>
+          </div>
+
           <button class="submit-button" id="create-button" type="submit">
             Создать
           </button>
         </form>
-
         <button class="close-button" id="close-newplace"></button>
       </div>
     </section>

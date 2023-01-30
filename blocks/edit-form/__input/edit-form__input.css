@@ -1,7 +1,6 @@
-.edit-form__description {
-  margin: 30px auto 45px;
+.edit-form__input {
+  margin: 0;
   width: 100%;
-  padding: 0;
   min-width: 238px;
   font-size: 14px;
   font-weight: 400;

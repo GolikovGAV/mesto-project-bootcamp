@@ -1,0 +1,7 @@
+.submit-button_inactive {
+  background-color: white;
+  color: black;
+  opacity: 0.2;
+  transition: color linear 0.5s;
+  transition: background-color linear 0.5s;
+}
