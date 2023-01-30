@@ -1,0 +1,8 @@
+.edit-form__container {
+  min-height: 65px;
+}
+@media screen and (max-width: 620px) {
+  .edit-form__container {
+    min-height: 85px;
+  }
+}
