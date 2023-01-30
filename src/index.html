@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./script.js" type="module" defer></script>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img
+        src="<%=require('./images/header__logo.svg')%>"
+        alt="Логотип Место Россия"
+        class="header__logo"
+      />
+    </header>
+    <main>
+      <section class="profile">
+        <img
+          src="<%=require('./images/profile__avatar.jpg')%>"
+          alt=""
+          class="profile__avatar"
+        />
+        <div class="profile__info">
+          <h2 class="profile__name" id="profile__name">Жак-Ив Кусто</h2>
+          <button class="edit-button" id="edit-button"></button>
+          <!-- prettier-ignore -->
+          <p class="profile__description" id="profile__description">Исследователь океана</p>
+        </div>
+        <button class="add-button"></button>
+      </section>
+      <section class="elements"></section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <!-- edit profile pop-up -->
+    <section class="pop-up" id="edit-form">
+      <div class="edit-form">
+        <h2 class="edit-form__title">Редактировать профиль</h2>
+        <form
+          required
+          action="#"
+          class="edit-form__form"
+          method="post"
+          name="user-profile"
+          novalidate
+        >
+          <div class="edit-form__container">
+            <input
+              type="text"
+              placeholder="Ваше имя"
+              class="edit-form__input"
+              id="edit-form__name"
+              name="user-name"
+              required
+              minlength="2"
+              maxlength="40"
+            />
+            <span id="user-name-error" class="edit-form__error-message"></span>
+          </div>
+          <div class="edit-form__container">
+            <input
+              type="text"
+              placeholder="О вас"
+              class="edit-form__input"
+              id="edit-form__description"
+              name="user-description"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <span
+              id="user-description-error"
+              class="edit-form__error-message"
+            ></span>
+          </div>
+          <button class="submit-button" id="save-profile" type="submit">
+            Сохранить
+          </button>
+        </form>
+        <button class="close-button" id="close-profile"></button>
+      </div>
+    </section>
+    <!-- pop-up newplace -->
+    <section class="pop-up" id="new-place">
+      <div class="edit-form">
+        <h2 class="edit-form__title">Новое место</h2>
+        <form
+          action="#"
+          class="edit-form__form"
+          method="post"
+          name="new-card"
+          novalidate
+        >
+          <div class="edit-form__container">
+            <input
+              value=""
+              placeholder="Название"
+              type="text"
+              class="edit-form__input"
+              id="newplace-name"
+              name="place-name"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span id="place-name-error" class="edit-form__error-message"></span>
+          </div>
+          <div class="edit-form__container">
+            <input
+              value=""
+              placeholder="Ссылка на картинку"
+              type="url"
+              class="edit-form__input"
+              id="newplace-link"
+              name="place-description"
+              required
+            />
+            <span
+              id="place-description-error"
+              class="edit-form__error-message"
+            ></span>
+          </div>
+
+          <button class="submit-button" id="create-button" type="submit">
+            Создать
+          </button>
+        </form>
+        <button class="close-button" id="close-newplace"></button>
+      </div>
+    </section>
+    <!-- full iamge pop-up -->
+    <section class="pop-up pop-up_opened-image" id="full-image">
+      <figure class="pop-up__figure">
+        <button class="close-button" id="close-full-image"></button>
+        <img src="#" class="pop-up__full-image" />
+        <figcaption class="pop-up__description"></figcaption>
+      </figure>
+    </section>
+    <!-- place template -->
+    <template id="templateElement">
+      <article class="element">
+        <img src="#" class="element__image" />
+        <button class="delete-button"></button>
+        <div class="element__name-container">
+          <h3 class="element__name"></h3>
+          <button class="like-button"></button>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>
