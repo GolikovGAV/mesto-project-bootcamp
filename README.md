@@ -12,7 +12,5 @@
 - Flexbox
 - Адаптивная верстка
 - Оформление файловой структуры по БЭМ
-
-###
-
-Сcылка на на GitHub Pages: https://golikovgav.github.io/mesto-project-bootcamp/
+- JS
+- Webpack
