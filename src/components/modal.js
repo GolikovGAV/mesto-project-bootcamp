@@ -8,12 +8,14 @@ const newPlaceLinkInput = popUpNewPlace.querySelector("#newplace-link");
 
 function closePopUp(data) {
   data.classList.remove("pop-up_opened");
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 //  open pop-ups
 
 function openPopUp(data) {
   data.classList.add("pop-up_opened");
+  document.addEventListener("keydown", closeByEscape);
 }
 
 // close pop up by clicking on "not working area"

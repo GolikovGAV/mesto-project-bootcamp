@@ -61,15 +61,15 @@ editButton.addEventListener("click", function () {
 
 // new place add button (opening a pop-up window for further creation)
 
-addButton.addEventListener("click", () => openPopUp(popUpNewPlace));
+addButton.addEventListener("click", () => {
+  openPopUp(popUpNewPlace);
+});
 
 // eventListenres for profile buttons
 
 closeProfile.addEventListener("click", () => closePopUp(profilePopUp));
 
 // close pop-ups by escape listener
-
-document.addEventListener("keyup", closeByEscape);
 
 // submit button (confirming the creation of a new card)
 
