@@ -61,9 +61,7 @@ editButton.addEventListener("click", function () {
 
 // new place add button (opening a pop-up window for further creation)
 
-addButton.addEventListener("click", () => {
-  openPopUp(popUpNewPlace);
-});
+addButton.addEventListener("click", () => openPopUp(popUpNewPlace));
 
 // eventListenres for profile buttons
 
