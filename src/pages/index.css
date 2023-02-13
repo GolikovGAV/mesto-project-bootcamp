@@ -10,17 +10,25 @@
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/avatar-container/profile__avatar-container.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__description/profile__description.css);
-/* buttons */
+/* add button */
 @import url(../blocks/add-button/add-button.css);
+/* edit button */
 @import url(../blocks/edit-button/edit-button.css);
+/* like button + counter */
 @import url(../blocks/like-button/like-button.css);
+@import url(../blocks/likes-container/likes-container.css);
 @import url(../blocks/like-button/like-button_active.css);
+@import url(../blocks/like-counter/like-counter.css);
+/* submit button */
 @import url(../blocks/submit-button/submit-button.css);
 @import url(../blocks/submit-button/_inactive/submit-button_inactive.css);
+/* edit button */
 @import url(../blocks/close-button/close-button.css);
+/* delete button */
 @import url(../blocks/delete-button/delete-button.css);
 /* elements */
 @import url(../blocks/elemets/elements.css);

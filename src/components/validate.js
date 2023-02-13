@@ -20,13 +20,13 @@ function addEventListenersForm(form, config) {
 
   // preventing page reload
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
   });
 
   // when form resets (submits) we disable sumbit button
 
-  form.addEventListener("reset", () => {
+  form.addEventListener('reset', () => {
     toggleSubmitButton(buttonElement, false, config);
   });
 
@@ -35,7 +35,7 @@ function addEventListenersForm(form, config) {
   // checking if each input is valid + disabling/enabling submit button
 
   [...inputElements].forEach((element) => {
-    element.addEventListener("input", () => {
+    element.addEventListener('input', () => {
       checkInputForValidity(element, form, config);
       toggleSubmitButton(buttonElement, form.checkValidity(), config);
     });
@@ -74,7 +74,7 @@ function showErrorMessage(element, errorMessage, config) {
 
 function hideErrorMessage(element, errorMessage, config) {
   element.classList.remove(config.inputErrorClass);
-  errorMessage.textContent = "";
+  errorMessage.textContent = '';
 }
 
 // disabling submit buttons for pop ups
