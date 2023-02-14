@@ -19,8 +19,8 @@ const fullImageDescription = document.querySelector('.pop-up__description');
 const elements = document.querySelector('.elements');
 const submitCreateButton = document.querySelector('#create-button');
 const confirmDeletePopUp = document.querySelector('#confirm-delete-pop-up');
-const confirmDeleteButton = document.querySelector('#confirm-delete-pop-up');
-let userId;
+const confirmDeleteButton = document.querySelector('#confirm-delete-button');
+let userID;
 
 function getAllRenderInfo() {
 	return Promise.all([getUserInfoFromServer(), getAllCardsFromServer()]);
@@ -28,17 +28,20 @@ function getAllRenderInfo() {
 
 getAllRenderInfo()
 	.then(([serverUserInfo, cardsData]) => {
-		userId = serverUserInfo._id;
+		userID = serverUserInfo._id;
 
 		cardsData.forEach((obj) => {
-			elements.append(createNewElement(obj, userId));
+			elements.append(createNewElement(obj, userID));
 		});
 	})
 	.catch((err) => console.log(err));
 
 // create new place card function
 
-const createNewElement = function (data, userId) {
+let cardToDelete;
+let cardToDeleteID;
+
+const createNewElement = function (data, userID) {
 	const element = templateElement.content
 		.querySelector('.element')
 		.cloneNode(true);
@@ -52,32 +55,53 @@ const createNewElement = function (data, userId) {
 	const likeButton = element.querySelector('.like-button');
 	const likeCounter = element.querySelector('.like-counter');
 
+	const deleteButton = element.querySelector('.delete-button');
+
 	function handleLikeButtonCLick() {
-		updateLikeInfo(cardId, isCardLiked(data, userId))
+		updateLikeInfo(cardId, isCardLiked(data, userID))
 			.then((newData) => {
 				data.likes = newData.likes;
-				updateLikeCount(newData, userId, likeButton, likeCounter);
+				updateLikeCount(newData, userID, likeButton, likeCounter);
 			})
 			.catch((err) => console.log(err));
 	}
 
-	updateLikeCount(data, userId, likeButton, likeCounter);
+	updateLikeCount(data, userID, likeButton, likeCounter);
 
 	likeButton.addEventListener('click', handleLikeButtonCLick);
 
-	checkerAndListenerForDeleteBtn(element, data, cardId);
+	// i crated this? No - remove delete button
+	if (userID !== data.owner._id) {
+		deleteButton.remove();
+	}
+
+	deleteButton.addEventListener('click', () => {
+		cardToDeleteID = cardId;
+		cardToDelete = element;
+		openPopUp(confirmDeletePopUp);
+	});
 
 	fullImageListener(element, data, imageElement);
 
 	return element;
 };
 
-function isCardLiked(data, userId) {
-	return data.likes.some((user) => user._id === userId);
+confirmDeleteButton.addEventListener('click', () => {
+	deleteCardOnServer(cardToDeleteID)
+		.then(() => {
+			cardToDelete.remove();
+		})
+		.catch((err) => console.log(err));
+
+	closePopUp(confirmDeletePopUp);
+});
+
+function isCardLiked(data, userID) {
+	return data.likes.some((user) => user._id === userID);
 }
 
-function updateLikeCount(data, userId, likeButton, likeCounter) {
-	if (isCardLiked(data, userId)) {
+function updateLikeCount(data, userID, likeButton, likeCounter) {
+	if (isCardLiked(data, userID)) {
 		likeButton.classList.add('like-button_active');
 	} else {
 		likeButton.classList.remove('like-button_active');
@@ -97,7 +121,7 @@ const submitCreate = function (event) {
 		link: newPlaceLinkInput.value
 	})
 		.then((newCardInfo) => {
-			const newCard = createNewElement(newCardInfo, userId);
+			const newCard = createNewElement(newCardInfo, userID);
 
 			elements.prepend(newCard);
 
@@ -133,38 +157,6 @@ function fullImageListener(element, data, imageElement) {
 
 			openPopUp(fullImagePopUp);
 		}
-	});
-}
-
-// i crated this? No - remove delete button / Yes - add delete button listener
-
-function checkerAndListenerForDeleteBtn(element, data, cardID) {
-	const deleteButton = element.querySelector('.delete-button');
-
-	if (userId !== data.owner._id) {
-		deleteButton.remove();
-	} else {
-		addDeleteButtonListener(deleteButton, cardID, element);
-	}
-}
-
-// open popup and give the cardID which should be deleted
-
-function addDeleteButtonListener(deleteButton, cardID, element) {
-	let cardToDeleteID = cardID;
-	deleteButton.addEventListener('click', () => {
-		openPopUp(confirmDeletePopUp);
-		submitDeleteListener(element, cardToDeleteID);
-	});
-}
-
-// delete Card on server and remove localy
-
-function submitDeleteListener(element, cardToDeleteID) {
-	confirmDeleteButton.addEventListener('click', () => {
-		element.remove();
-		deleteCardOnServer(cardToDeleteID).catch((err) => console.log(err));
-		closePopUp(confirmDeletePopUp);
 	});
 }
 
