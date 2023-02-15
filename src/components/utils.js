@@ -12,5 +12,15 @@ function openPopUp(data) {
 	data.classList.add('pop-up_opened');
 	document.addEventListener('keydown', closeByEscape);
 }
+// block button while pending
 
-export { openPopUp, closePopUp };
+function changeButtonState(button, state, text) {
+	if (state) {
+		button.disabled = true;
+	} else {
+		button.disabled = false;
+	}
+	button.textContent = text;
+}
+
+export { openPopUp, closePopUp, changeButtonState };

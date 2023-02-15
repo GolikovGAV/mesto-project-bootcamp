@@ -12,6 +12,7 @@ import {
 	deleteCardOnServer,
 	updateLikeInfo
 } from './api.js';
+import { changeButtonState } from './utils.js';
 
 const templateElement = document.querySelector('#templateElement');
 const fullImage = document.querySelector('.pop-up__full-image');
@@ -20,7 +21,12 @@ const elements = document.querySelector('.elements');
 const submitCreateButton = document.querySelector('#create-button');
 const confirmDeletePopUp = document.querySelector('#confirm-delete-pop-up');
 const confirmDeleteButton = document.querySelector('#confirm-delete-button');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
+const profilePic = document.querySelector('.profile__avatar');
 let userID;
+let cardToDelete;
+let cardToDeleteID;
 
 function getAllRenderInfo() {
 	return Promise.all([getUserInfoFromServer(), getAllCardsFromServer()]);
@@ -30,6 +36,10 @@ getAllRenderInfo()
 	.then(([serverUserInfo, cardsData]) => {
 		userID = serverUserInfo._id;
 
+		profileName.textContent = serverUserInfo.name;
+		profileDescription.textContent = serverUserInfo.about;
+		profilePic.src = serverUserInfo.avatar;
+
 		cardsData.forEach((obj) => {
 			elements.append(createNewElement(obj, userID));
 		});
@@ -37,9 +47,6 @@ getAllRenderInfo()
 	.catch((err) => console.log(err));
 
 // create new place card function
-
-let cardToDelete;
-let cardToDeleteID;
 
 const createNewElement = function (data, userID) {
 	const element = templateElement.content
@@ -90,10 +97,9 @@ confirmDeleteButton.addEventListener('click', () => {
 	deleteCardOnServer(cardToDeleteID)
 		.then(() => {
 			cardToDelete.remove();
+			closePopUp(confirmDeletePopUp);
 		})
 		.catch((err) => console.log(err));
-
-	closePopUp(confirmDeletePopUp);
 });
 
 function isCardLiked(data, userID) {
@@ -129,22 +135,14 @@ const submitCreate = function (event) {
 
 			event.target.reset();
 		})
-		.catch((err) => console.log(err))
-		.finally(() => {
+		.catch((err) => {
+			console.log(err);
 			changeButtonState(submitCreateButton, false, 'Создать');
+		})
+		.finally(() => {
+			changeButtonState(submitCreateButton, true, 'Создать');
 		});
 };
-
-// block button while pending
-
-function changeButtonState(button, state, text) {
-	if (state) {
-		button.disabled = true;
-	} else {
-		button.disabled = false;
-	}
-	button.textContent = text;
-}
 
 // full image listener
 
@@ -165,7 +163,9 @@ export {
 	fullImage,
 	fullImageDescription,
 	elements,
+	profileName,
+	profileDescription,
+	profilePic,
 	createNewElement,
-	submitCreate,
-	changeButtonState
+	submitCreate
 };

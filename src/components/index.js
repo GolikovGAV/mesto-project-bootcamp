@@ -1,13 +1,14 @@
 import '../pages/index.css';
-import { openPopUp, closePopUp } from './utils';
+import { openPopUp, closePopUp, changeButtonState } from './utils';
 import { profilePopUp, popUpNewPlace } from './modal.js';
-import { submitCreate, changeButtonState } from './card.js';
-import { enableValidation } from './validate.js';
 import {
-	getUserInfoFromServer,
-	changeUserInfoOnServer,
-	updateUserPic
-} from './api.js';
+	submitCreate,
+	profileName,
+	profileDescription,
+	profilePic
+} from './card.js';
+import { enableValidation } from './validate.js';
+import { changeUserInfoOnServer, updateUserPic } from './api.js';
 
 const configSelector = {
 	formSelector: '.edit-form__form',
@@ -19,9 +20,6 @@ const configSelector = {
 };
 
 const editButton = document.querySelector('.edit-button');
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const profilePic = document.querySelector('.profile__avatar');
 const addButton = document.querySelector('.add-button');
 const nameInput = document.querySelector('#edit-form__name');
 const descriptionInput = document.querySelector('#edit-form__description');
@@ -39,36 +37,25 @@ popups.forEach((popup) => {
 	});
 });
 
-//get user info to edit form
-
-function updateProfileInfo() {
-	getUserInfoFromServer()
-		.then((serverUserInfo) => {
-			profileName.textContent = serverUserInfo.name;
-			profileDescription.textContent = serverUserInfo.about;
-			profilePic.src = serverUserInfo.avatar;
-		})
-		.catch((err) => console.log(err));
-}
-
-updateProfileInfo();
-
 // submit function for saving new profile info
 
 function handleProfileFormSubmit(event) {
 	event.preventDefault();
+
 	const newUserInfo = {};
 
 	newUserInfo.name = nameInput.value;
 	newUserInfo.about = descriptionInput.value;
 
-	profileName.textContent = newUserInfo.name;
-	profileDescription.textContent = newUserInfo.about;
+	changeUserInfoOnServer(newUserInfo)
+		.then(() => {
+			profileName.textContent = newUserInfo.name;
+			profileDescription.textContent = newUserInfo.about;
 
-	changeUserInfoOnServer(newUserInfo).catch((err) => console.log(err));
-
-	closePopUp(profilePopUp);
-	event.target.reset();
+			closePopUp(profilePopUp);
+			event.target.reset();
+		})
+		.catch((err) => console.log(err));
 }
 
 // open profile edit
@@ -125,10 +112,13 @@ function sendNewProfilePic(event) {
 			profilePic.src = newUserInfo.avatar;
 
 			closePopUp(userProfilePicPopUp);
+			event.target.reset();
 		})
-		.catch((err) => console.log(err))
+		.catch((err) => {
+			console.log(err);
+			changeButtonState(changeUserPicButton, false, 'Обновить');
+		})
 		.finally(() => {
 			changeButtonState(changeUserPicButton, true, 'Обновить');
 		});
-	event.target.reset();
 }

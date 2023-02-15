@@ -9,7 +9,7 @@ const config = {
 //if response is ok => convert it in data that we can work with
 // if => not show promise with error msg
 
-function responsCheck(res) {
+function checkResponse(res) {
 	return res.ok
 		? res.json()
 		: res.json().then((res) => Promise.reject(`Ошибка: ${res.message}`));
@@ -19,14 +19,14 @@ function getAllCardsFromServer() {
 	return fetch(`${config.url}/cards`, {
 		method: 'GET',
 		headers: config.headers
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 function getUserInfoFromServer() {
 	return fetch(`${config.url}/users/me`, {
 		method: 'GET',
 		headers: config.headers
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 function changeUserInfoOnServer(newUserInfo) {
@@ -34,14 +34,14 @@ function changeUserInfoOnServer(newUserInfo) {
 		method: 'PATCH',
 		headers: config.headers,
 		body: JSON.stringify(newUserInfo)
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 function deleteCardOnServer(cardID) {
 	return fetch(`${config.url}/cards/${cardID}`, {
 		method: 'DELETE',
 		headers: config.headers
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 function postNewCardOnServer(newCardData) {
@@ -49,14 +49,14 @@ function postNewCardOnServer(newCardData) {
 		method: 'POST',
 		headers: config.headers,
 		body: JSON.stringify(newCardData)
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 function updateLikeInfo(cardID, isCardLiked) {
 	return fetch(`${config.url}/cards/likes/${cardID}`, {
 		method: isCardLiked ? 'DELETE' : 'PUT',
 		headers: config.headers
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 function updateUserPic(newUserPicLink) {
@@ -64,7 +64,7 @@ function updateUserPic(newUserPicLink) {
 		method: 'PATCH',
 		headers: config.headers,
 		body: JSON.stringify(newUserPicLink)
-	}).then(responsCheck);
+	}).then(checkResponse);
 }
 
 export {
