@@ -4,7 +4,12 @@ import {
 	newPlaceLinkInput,
 	popUpNewPlace
 } from './modal.js';
-import { closePopUp, openPopUp } from './utils.js';
+import {
+	closePopUp,
+	openPopUp,
+	changeButtonText,
+	isButtonDisabled
+} from './utils.js';
 import {
 	getAllCardsFromServer,
 	getUserInfoFromServer,
@@ -12,7 +17,6 @@ import {
 	deleteCardOnServer,
 	updateLikeInfo
 } from './api.js';
-import { changeButtonState } from './utils.js';
 
 const templateElement = document.querySelector('#templateElement');
 const fullImage = document.querySelector('.pop-up__full-image');
@@ -94,12 +98,23 @@ const createNewElement = function (data, userID) {
 };
 
 confirmDeleteButton.addEventListener('click', () => {
+	isButtonDisabled(confirmDeleteButton, true);
+	changeButtonText(confirmDeleteButton, 'Сохраняем...');
+
 	deleteCardOnServer(cardToDeleteID)
 		.then(() => {
 			cardToDelete.remove();
 			closePopUp(confirmDeletePopUp);
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => {
+			console.log(err);
+			isButtonDisabled(confirmDeleteButton, false);
+			changeButtonText(confirmDeleteButton, 'Да');
+		})
+		.finally(() => {
+			changeButtonText(confirmDeleteButton, 'Да');
+			isButtonDisabled(confirmDeleteButton, false);
+		});
 });
 
 function isCardLiked(data, userID) {
@@ -120,7 +135,8 @@ function updateLikeCount(data, userID, likeButton, likeCounter) {
 const submitCreate = function (event) {
 	event.preventDefault();
 
-	changeButtonState(submitCreateButton, true, 'Сохранение...');
+	isButtonDisabled(submitCreateButton, true);
+	changeButtonText(submitCreateButton, 'Сохраняем...');
 
 	postNewCardOnServer({
 		name: newPlaceNameInput.value,
@@ -137,10 +153,11 @@ const submitCreate = function (event) {
 		})
 		.catch((err) => {
 			console.log(err);
-			changeButtonState(submitCreateButton, false, 'Создать');
+			isButtonDisabled(submitCreateButton, false);
+			changeButtonText(submitCreateButton, 'Создать');
 		})
 		.finally(() => {
-			changeButtonState(submitCreateButton, true, 'Создать');
+			changeButtonText(submitCreateButton, 'Создать');
 		});
 };
 

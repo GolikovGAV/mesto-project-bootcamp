@@ -14,13 +14,15 @@ function openPopUp(data) {
 }
 // block button while pending
 
-function changeButtonState(button, state, text) {
+function changeButtonText(button, text) {
+	button.textContent = text;
+}
+
+function isButtonDisabled(button, state) {
 	if (state) {
 		button.disabled = true;
 	} else {
 		button.disabled = false;
 	}
-	button.textContent = text;
 }
-
-export { openPopUp, closePopUp, changeButtonState };
+export { openPopUp, closePopUp, isButtonDisabled, changeButtonText };

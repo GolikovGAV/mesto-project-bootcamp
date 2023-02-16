@@ -1,5 +1,10 @@
 import '../pages/index.css';
-import { openPopUp, closePopUp, changeButtonState } from './utils';
+import {
+	openPopUp,
+	closePopUp,
+	changeButtonText,
+	isButtonDisabled
+} from './utils';
 import { profilePopUp, popUpNewPlace } from './modal.js';
 import {
 	submitCreate,
@@ -23,6 +28,10 @@ const editButton = document.querySelector('.edit-button');
 const addButton = document.querySelector('.add-button');
 const nameInput = document.querySelector('#edit-form__name');
 const descriptionInput = document.querySelector('#edit-form__description');
+const userProfilePicPopUp = document.querySelector('#user-profile-pic-pop-up');
+const profilePicInput = document.querySelector('#user-profile-pic-input');
+const changeUserPicButton = document.querySelector('#update-pic-button');
+const confirmProfileChanges = document.querySelector('#save-profile');
 
 const popups = document.querySelectorAll('.pop-up');
 
@@ -47,6 +56,9 @@ function handleProfileFormSubmit(event) {
 	newUserInfo.name = nameInput.value;
 	newUserInfo.about = descriptionInput.value;
 
+	isButtonDisabled(confirmProfileChanges, true);
+	changeButtonText(confirmProfileChanges, 'Сохраняем...');
+
 	changeUserInfoOnServer(newUserInfo)
 		.then(() => {
 			profileName.textContent = newUserInfo.name;
@@ -55,7 +67,14 @@ function handleProfileFormSubmit(event) {
 			closePopUp(profilePopUp);
 			event.target.reset();
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => {
+			console.log(err);
+			isButtonDisabled(confirmProfileChanges, false);
+			changeButtonText(confirmProfileChanges, 'Сохранить');
+		})
+		.finally(() => {
+			changeButtonText(confirmProfileChanges, 'Сохранить');
+		});
 }
 
 // open profile edit
@@ -86,10 +105,6 @@ enableValidation(configSelector);
 
 // open edit profile pic pop-up
 
-const userProfilePicPopUp = document.querySelector('#user-profile-pic-pop-up');
-const profilePicInput = document.querySelector('#user-profile-pic-input');
-const changeUserPicButton = document.querySelector('#update-pic-button');
-
 profilePic.addEventListener('click', () => {
 	openPopUp(userProfilePicPopUp);
 });
@@ -101,7 +116,8 @@ userProfilePicPopUp.addEventListener('submit', (event) => {
 function sendNewProfilePic(event) {
 	event.preventDefault();
 
-	changeButtonState(changeUserPicButton, true, 'Сохранение...');
+	isButtonDisabled(changeUserPicButton, true);
+	changeButtonText(changeUserPicButton, 'Сохраняем...');
 
 	const newUserInfo = {};
 
@@ -116,9 +132,10 @@ function sendNewProfilePic(event) {
 		})
 		.catch((err) => {
 			console.log(err);
-			changeButtonState(changeUserPicButton, false, 'Обновить');
+			isButtonDisabled(changeUserPicButton, false);
+			changeButtonText(changeUserPicButton, 'Обновить');
 		})
 		.finally(() => {
-			changeButtonState(changeUserPicButton, true, 'Обновить');
+			changeButtonText(changeUserPicButton, 'Обновить');
 		});
 }
