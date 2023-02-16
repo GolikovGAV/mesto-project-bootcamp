@@ -109,7 +109,6 @@ confirmDeleteButton.addEventListener('click', () => {
 		.catch((err) => {
 			console.log(err);
 			isButtonDisabled(confirmDeleteButton, false);
-			changeButtonText(confirmDeleteButton, 'Да');
 		})
 		.finally(() => {
 			changeButtonText(confirmDeleteButton, 'Да');
@@ -154,7 +153,6 @@ const submitCreate = function (event) {
 		.catch((err) => {
 			console.log(err);
 			isButtonDisabled(submitCreateButton, false);
-			changeButtonText(submitCreateButton, 'Создать');
 		})
 		.finally(() => {
 			changeButtonText(submitCreateButton, 'Создать');

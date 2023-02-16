@@ -70,7 +70,6 @@ function handleProfileFormSubmit(event) {
 		.catch((err) => {
 			console.log(err);
 			isButtonDisabled(confirmProfileChanges, false);
-			changeButtonText(confirmProfileChanges, 'Сохранить');
 		})
 		.finally(() => {
 			changeButtonText(confirmProfileChanges, 'Сохранить');
@@ -133,7 +132,6 @@ function sendNewProfilePic(event) {
 		.catch((err) => {
 			console.log(err);
 			isButtonDisabled(changeUserPicButton, false);
-			changeButtonText(changeUserPicButton, 'Обновить');
 		})
 		.finally(() => {
 			changeButtonText(changeUserPicButton, 'Обновить');
