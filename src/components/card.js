@@ -99,7 +99,7 @@ const createNewElement = function (data, userID) {
 
 confirmDeleteButton.addEventListener('click', () => {
 	isButtonDisabled(confirmDeleteButton, true);
-	changeButtonText(confirmDeleteButton, 'Сохраняем...');
+	changeButtonText(confirmDeleteButton, 'Удаляем...');
 
 	deleteCardOnServer(cardToDeleteID)
 		.then(() => {
